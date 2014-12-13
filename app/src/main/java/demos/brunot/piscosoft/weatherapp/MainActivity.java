@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -52,12 +53,12 @@ public class MainActivity extends ActionBarActivity {
     public void openPreferredLocationInMap(){
         Uri location = getLocation();
         Intent mapIntent = getMapIntent(location);
-        //if ( mapIntent.resolveActivity(getPackageManager()) != null ){
+        if ( mapIntent.resolveActivity(getPackageManager()) != null ){
             startActivity(mapIntent);
-       /* }
+        }
         else {
-            Log.d(LOG_TAG, "MAPS ARE NOT SUPPORTED IN YOUR SHITTY DEVICE" );
-        } */
+            Log.d(LOG_TAG, "MAPS ARE NOT SUPPORTED IN YOUR SHITTY DEVICE");
+        }
     }
 
     public Intent getMapIntent(Uri geoLocation){
