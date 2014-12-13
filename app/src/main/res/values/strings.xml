@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WeatherApp</string>
+    <string name="hello_world">Hello from brunot!</string>
+    <string name="action_settings">Settings wasssabi</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="pref_location_label">Location</string>
+    <string name="pref_location_default" translatable="false">94102,usa</string>
+
+    <string name="pref_location_key" translatable="false">Location</string>
+    <string name="title_activity_weather_detail">WeatherDetailActivity</string>
+    <string name="pref_temperature_unit_key" translatable="false">TemperatureUnits</string>
+    <string name="pref_temperature_unit_label">Temperature Units</string>
+    <string name="action_map">Map location</string>
+    <string name="action_share">Share</string>
+    <string-array name="pref_temperature_unit_entries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+    <string-array name="pref_temperature_unit_values">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+    <string name="pref_temperature_unit_default">Imperial</string>
+</resources>
