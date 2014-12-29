@@ -68,7 +68,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
      * Fortunately parsing is easy:  constructor takes the JSON string and converts it
      * into an Object hierarchy for us.
      */
-    private String[] getWeatherDataFromJson(String forecastJsonStr, int numDays,
+    private void getWeatherDataFromJson(String forecastJsonStr, int numDays,
                                             String locationSetting)
             throws JSONException {
 
@@ -190,7 +190,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
                 if (weatherCursor.moveToFirst()){
                     ContentValues resultValues = new ContentValues();
                     DatabaseUtils.cursorRowToContentValues(weatherCursor, resultValues);
-                    Log.v(LOG_TAG, "query succesful !");
+                    Log.v(LOG_TAG, "query successful !");
                     logContentValues(resultValues);
                 }
                 else {
@@ -198,7 +198,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
                 }
             }
         }
-        return resultStrs;
+
     }
 
     private void logContentValues(ContentValues contentValues){
@@ -299,8 +299,8 @@ public class FetchWeatherTask extends AsyncTask<String, Void, Void> {
         }
 
         try {
-            String[] result = getWeatherDataFromJson(forecastJsonStr, numDays, locationQuery);
-            allData = result;
+            getWeatherDataFromJson(forecastJsonStr, numDays, locationQuery);
+            //allData = result;
         }
         catch (JSONException exception){
             Log.e(LOG_TAG, exception.getMessage(), exception);

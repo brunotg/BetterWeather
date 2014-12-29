@@ -26,9 +26,7 @@ import java.util.Date;
 
 import demos.brunot.piscosoft.weatherapp.data.WeatherContract;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class ForecastFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private String mLocation;
@@ -176,13 +174,21 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
         listViewForecast.setAdapter(mForecastAdapter);
         listViewForecast.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                Intent weatherDetailIntent = new Intent(getActivity(), WeatherDetailActivity.class);
-                weatherDetailIntent.putExtra(Intent.EXTRA_TEXT, "placeholdeer");
-                //weatherDetailIntent.setData("test");
-                startActivity(weatherDetailIntent);
-
+                SimpleCursorAdapter adapter = (SimpleCursorAdapter) adapterView.getAdapter();
+                Cursor cursor = adapter.getCursor();
+                if  ((cursor != null) && (cursor.moveToPosition(position))){
+                    boolean isMetric = Utility.isMetric(getActivity());
+                    String forecast = String.format("%s - %s ::: %s /%s",
+                            Utility.formatDate(cursor.getString(COL_WEATHER_DATE)),
+                            cursor.getString(COL_WEATHER_DESC),
+                            Utility.formatTemperature(cursor.getDouble(COL_WEATHER_MAX_TEMP),isMetric),
+                            Utility.formatTemperature(cursor.getDouble(COL_WEATHER_MIN_TEMP), isMetric));
+                    Intent weatherDetailIntent = new Intent(getActivity(), WeatherDetailActivity.class);
+                    weatherDetailIntent.putExtra(Intent.EXTRA_TEXT, forecast);
+                    startActivity(weatherDetailIntent);
+                }
                 /**
                 Toast toast = Toast.makeText(getActivity(), mForecastAdapter.getItem(position), Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 0);

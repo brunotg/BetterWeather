@@ -103,7 +103,7 @@ public class WeatherProvider extends ContentProvider {
             }
             case LOCATION_ID:
             {
-                Log.d("test_provider", "the uri is " + uri.toString());
+                Log.d("test_provider", "<<>>>the uri is " + uri.toString());
                 Log.d("test_provider", String.format("the table name is %s , the location entry is %s", WeatherContract.LocationEntry.TABLE_NAME,WeatherContract.LocationEntry._ID ));
                 resultCursor = mOpenHelper.getReadableDatabase().query(
                         WeatherContract.LocationEntry.TABLE_NAME,

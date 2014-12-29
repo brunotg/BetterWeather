@@ -28,8 +28,8 @@ public class Utility {
 
     static String formatTemperature(double temperature, boolean isMetric) {
         double temp;
-        if ( !isMetric ) {
-            temp = 9*temperature/5+32;
+        if ( ! isMetric ) { // is farenheit
+            temp = temperature * 1.8 + 32; //9*temperature/5+32;
         } else {
             temp = temperature;
         }
