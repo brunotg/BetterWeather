@@ -15,7 +15,7 @@
     <ListPreference
         android:title="@string/pref_temperature_unit_label"
         android:key="@string/pref_temperature_unit_key"
-        android:defaultValue="@string/pref_temperature_unit_default"
+        android:defaultValue="@string/pref_temperature_unit_metric"
         android:entryValues="@array/pref_temperature_unit_values"
         android:entries="@array/pref_temperature_unit_entries"/>
 

@@ -3,11 +3,17 @@ package demos.brunot.piscosoft.weatherapp.data;
 import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import java.text.ParseException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by brunot on 12/21/14.
  */
 public class WeatherContract {
+
+    public static final String DATE_FORMAT = "yyyyMMDD";
 
     public static final String CONTENT_AUTHORITY = "demos.brunot.piscosoft.weatherapp";
 
@@ -107,7 +113,20 @@ public class WeatherContract {
         public static String getStartDateFromUri(Uri uri){
             return uri.getQueryParameter(COLUMN_DATETEXT);
         }
-
     }
 
+    public static Date getDateFromDb(String dateText) {
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat(DATE_FORMAT);
+        try {
+            return dbDateFormat.parse(dateText);
+        } catch ( ParseException e ) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String getDbDateString(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        return sdf.format(date);
+    }
 }
